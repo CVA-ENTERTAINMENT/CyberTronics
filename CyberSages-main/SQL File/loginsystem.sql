@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2024 at 05:59 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Dec 01, 2024 at 02:05 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,7 +40,34 @@ CREATE TABLE `admin` (
 INSERT INTO `admin` (`id`, `username`, `password`) VALUES
 (1, 'admin', '5c428d8875d2948607f3e3fe134d71b4');
 
-----------------------------------------------------------
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_items`
+--
+
+CREATE TABLE `cart_items` (
+  `id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `total_price` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart_items`
+--
+
+INSERT INTO `cart_items` (`id`, `product_name`, `price`, `quantity`, `total_price`, `created_at`) VALUES
+(1, 'CT5', 200.00, 1, 200.00, '2024-11-30 23:27:22'),
+(2, 'Quantum AI chip', 800.00, 1, 800.00, '2024-11-30 23:27:22'),
+(3, 'CT5', 200.00, 1, 200.00, '2024-11-30 23:27:22'),
+(4, 'Quantum AI chip', 800.00, 2, 1600.00, '2024-11-30 23:27:59'),
+(5, 'CT5', 200.00, 3, 600.00, '2024-12-01 00:30:35'),
+(6, 'CT9', 600.00, 1, 600.00, '2024-12-01 00:32:45');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
@@ -64,16 +91,6 @@ INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `password`, `contactno`, `
 (1, 'Harresh', 'Varrmar', 'harreshvarrmar@gmail.com', 'Test@123', '0123456789', '2024-10-15 06:15:52'),
 (2, 'Karthi', 'Loganathan', 'karthi@gamil.com', 'Test@12345', '01269876969', '2024-10-15 06:35:03');
 
-----------------------------------------------------------
-CREATE TABLE `cart_items` (
-  `id` int(11) NOT NULL,
-  `product_name` varchar(255) NOT NULL,
-  `price` decimal(10,2) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `total_price` decimal(10,2) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 --
 -- Indexes for dumped tables
 --
@@ -82,6 +99,12 @@ CREATE TABLE `cart_items` (
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cart_items`
+--
+ALTER TABLE `cart_items`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -101,23 +124,17 @@ ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `cart_items`
+--
+ALTER TABLE `cart_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
-
-ALTER TABLE `cart_items`
-  ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `cart_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
-
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
